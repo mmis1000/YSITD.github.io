@@ -1,376 +1,153 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <script>
-  function FitToContent(e, t) {
-    var n = e && e.style ? e : document.getElementById(e);
-    if (!n) return;
-    var r = n.clientHeight;
-    if (!t || t > r) {
-        r = Math.max(n.scrollHeight, r);
-        if (t) r = Math.min(t, r);
-        if (r > n.clientHeight) n.style.height = r + "px"
-    }
+  <meta charset="utf-8">
+  <title>YSITD</title>
+<style>
+body {
+  counter-reset: section;                   /* Set the section counter to 0 */
+}
+.page:after {
+  counter-increment: section;               
+  content: "Page" counter(section);
+  position:absolute;
+  right:5px;
+  bottom:5px;
+  font-size:18px;
+  line-height:18px;
+  text-align:center;
+  vertical-align:baseline;
+  color:#777777;
 }
 
-function Reset() {
-    window.location.replace(".")
+* {
+  border:0px;
+  margin:0px;
+  padding:0px;
 }
 
-function ShowAvailable() {
-    var e = $("#mob").val();
-    if (e == "Creeper") {
-        $("#creepextra").show()
-    } else {
-        $("#creepextra").hide()
-    } if (e == "Zombie" || e == "PigZombie") {
-        $("select.extra").html("<option value=''>Normal</option><option value='IsBaby:1'>Baby</option><option value='IsVillager:1'>Villager</option><option value='IsBaby:1,IsVillager:1'>Baby Villager</option><option value='IsBaby:1,Riding:{id:Chicken,IsChickenJockey:1}'>Jockey</option>")
-    } else if (e == "Skeleton") {
-        $("select.extra").html("<option value=''>Normal</option><option value='SkeletonType:1'>Wither</option>")
-    } else if (e == "Creeper") {
-        $("select.extra").html("<option value=''>Normal</option><option value='powered:1'>Powered</option>")
-    } else if (e == "Ozelot") {
-        $("select.extra").html("<option value=''>Wild</option><option value='1'>tuxuedo</option><option value='2'>Tabby</option><option value='3'>Siamese</option>")
-    } else {
-        $("select.extra").html("<option value=''></option>")
-    }
+html, body {
+  width:100%;
+  height:100%;
 }
 
-function GetEnch(e, t) {
-    var n = $(e).val();
-    if (n == 397) $("#enchLabel").html("Choose Head:");
-    else if (e == "#Harmour") $("#enchLabel").html("Enchantment:");
-    $.ajax({
-        url: "http://www.minecraftupdates.com/getdropdown.php?itemID=" + n,
-        success: function(e) {
-            $(t).html(e)
-        }
-    })
+body {
+  overflow:auto;
+  position:relative;
 }
 
-function GetLvl(e, t) {
-    var n = $(e).val();
-    if (n.indexOf("MHF") == -1) {
-        $.ajax({
-            url: "http://www.minecraftupdates.com/getdropdown.php?enchID=" + n,
-            success: function(e) {
-                $(t).html(e)
-            }
-        })
-    } else {
-        $(t).html('<option value=""></option>')
-    }
+.pages {
+  position:fixed;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  top:0px;
+  overflow:auto;
 }
 
-function Generate() {
-    var e = $("#mob").val();
-    var t = $("#customName").val();
-    var n = $("#weapon").val();
-    var r = $("#Wench").val();
-    var i = $("#WenchLvl").val();
-    var s = $("#Harmour").val();
-    var o = $("#A1ench").val();
-    var u = $("#A1enchLvl").val();
-    var a = $("#Barmour").val();
-    var f = $("#A2ench").val();
-    var l = $("#A2enchLvl").val();
-    var c = $("#Larmour").val();
-    var h = $("#A3ench").val();
-    var p = $("#A3enchLvl").val();
-    var d = $("#Farmour").val();
-    var v = $("#A4ench").val();
-    var m = $("#A4enchLvl").val();
-    var g = $("#health").val();
-    var y = $("#speed").val();
-    var b = $("#attackDmg").val();
-    var w = $("#followRange").val();
-    var E = $("#knockback").val();
-    var S = $("#extra").val();
-    var x = $("#drop1").val();
-    var T = $("#drop2").val();
-    var N = $("#drop3").val();
-    var C = $("#drop4").val();
-    var k = $("#drop5").val();
-    var L = "";
-    var A = "";
-    var O = "";
-    var M = "";
-    var _ = "";
-    var D = "";
-    var P = "";
-    var H = "";
-    var B = "/summon " + e + " ~ ~1 ~ ";
-    if (x != "") A = "Count:1,";
-    if (n != "") n = A + "id:" + n;
-    if (r != "") r = ",tag:{ench:[{id:" + r + ",lvl:" + i + "}]}";
-    if (T != "") O = "Count:1,";
-    if (d != "") d = O + "id:" + d;
-    if (v != "") v = ",tag:{ench:[{id:" + v + ",lvl:" + m + "}]}";
-    if (N != "") M = "Count:1,";
-    if (c != "") c = M + "id:" + c;
-    if (h != "") h = ",tag:{ench:[{id:" + h + ",lvl:" + p + "}]}";
-    if (C != "") _ = "Count:1,";
-    if (a != "") a = _ + "id:" + a;
-    if (f != "") f = ",tag:{ench:[{id:" + f + ",lvl:" + l + "}]}";
-    if (k != "") D = "Count:1,";
-    if (s != "") s = D + "id:" + s;
-    if (o.indexOf("MHF") != -1) o = ",Damage:3," + "tag:{SkullOwner:" + o + "}";
-    else if (o != "") o = ",tag:{ench:[{id:" + o + ",lvl:" + u + "}]}";
-    if (n != "" || s != "" || c != "" || a != "" || d != "") {
-        P = "{";
-        var j = "Equipment:[{" + n + r + "},{" + d + v + "},{" + c + h + "},{" + a + f + "},{" + s + o + "}]";
-        H = "}"
-    } else j = ""; if (t != "") {
-        P = "{";
-        t = "CustomName:" + t + ",CustomNameVisible:1";
-        if (j != "") t = "," + t;
-        H = "}"
-    }
-    if (g != "") g = "{Name:generic.maxHealth,Base:" + g + "}";
-    if (y != "") y = "{Name:generic.movementSpeed,Base:" + y + "}";
-    if (b != "") b = "{Name:generic.attackDamage,Base:" + b + "}";
-    if (w != "") w = "{Name:generic.followRange,Base:" + w + "}";
-    if (E != "") E = "{Name:generic.knockbackResistance,Base:" + E + "}";
-    var F = g;
-    if (y != "" && F != "") F += ",";
-    F = F + y;
-    if (b != "" && F != "") F += ",";
-    F = F + b;
-    if (w != "" && F != "") F += ",";
-    F = F + w;
-    if (E != "" && F != "") F += ",";
-    F = F + E;
-    if (F != "") {
-        P = "{";
-        var I = "Attributes:[" + F + "]";
-        if (j != "" || t != "") I = "," + I;
-        H = "}"
-    } else var I = ""; if (S != "") {
-        P = "{";
-        if (j != "" || t != "" || I != "") S = "," + S;
-        H = "}"
-    }
-    if (x != "" || T != "" || N != "" || C != "" || k != "") {
-        if (x == "") x = "0.0F";
-        if (T == "") T = "0.0F";
-        if (N == "") N = "0.0F";
-        if (C == "") C = "0.0F";
-        if (k == "") k = "0.0F";
-        P = "{";
-        L = "DropChances:[" + x + "," + T + "," + N + "," + C + "," + k + "]";
-        if (j != "" || t != "" || I != "" || S != "") L = "," + L;
-        H = "}"
-    }
-    var q = $("#mob").val();
-    if (q == "Creeper") {
-        P = "{";
-        var R = $("#XpRad").val();
-        var U = $("#fuse").val();
-        var z = $("#ignited").val();
-        var W = "ExplosionRadius:" + R + ",Fuse:" + U + z;
-        if (j != "" || t != "" || I != "" || S != "") W = "," + W;
-        H = "}"
-    } else var W = "";
-    var X = B + P + j + t + I + S + W + L + H;
-    $("#codeResultBox").val(X);
-    $("#youCanEdit").show();
-    FitToContent("codeResultBox", 500)
+.page {
+  box-sizing: border-box;
+  float:left;
+  position:relative;
+  width:100%;
+  height:100%;
+  background:#ffffff;
+  border-bottom:1px solid #777777;
 }
-  </script>
+.page .placeholder{
+  display:inline-block;
+  width:0px;
+  height:100%;
+  vertical-align:middle;
+  line-height:0px;
+}
+
+.p0,.p0 span{
+  font-size:200px;
+  text-align:center;
+  vertical-align:middle;
+  line-height:0px;
+}
+
+.p1,.p1 a{
+  font-size:200px;
+  text-align:center;
+  vertical-align:middle;
+  line-height:0px;
+}
+
+.p2,.p2 a{
+  font-size:20px;
+  text-align:center;
+  vertical-align:middle;
+  line-height:0px;
+}
+
+@media screen and (max-width: 1000px) {
+  .p0,.p0 span{
+    font-size:140px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+
+  .p1,.p1 a{
+    font-size:140px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .p0,.p0 span{
+    font-size:70px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+
+  .p1,.p1 a{
+    font-size:70px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .p0,.p0 span{
+    font-size:40px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+
+  .p1,.p1 a{
+    font-size:40px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+}
+</style>
 </head>
 <body>
-<form>
-<p>
-    <b>[實體ID]:</b>
-    <select name="mob" id="mob" onChange="ShowAvailable();">
-        <option value="">Select a Mob</option>
-        <option value='Skeleton'>Skeleton</option><option value='Zombie'>Zombie</option><option value='PigZombie'>PigZombie</option><option value='Creeper'>Creeper</option><option value='Spider'>Spider</option><option value='Giant'>Giant</option><option value='Slime'>Slime</option><option value='Ghast'>Ghast</option><option value='Enderman'>Enderman</option><option value='CaveSpider'>CaveSpider</option><option value='Silverfish'>Silverfish</option><option value='Blaze'>Blaze</option><option value='LavaSlime'>LavaSlime</option><option value='EnderDragon'>EnderDragon</option><option value='WitherBoss'>WitherBoss</option><option value='Witch'>Witch</option><option value='Bat'>Bat</option><option value='Pig'>Pig</option><option value='Sheep'>Sheep</option><option value='Cow'>Cow</option><option value='Chicken'>Chicken</option><option value='Squid'>Squid</option><option value='Wolf'>Wolf</option><option value='MushroomCow'>MushroomCow</option><option value='SnowMan'>SnowMan</option><option value='Ozelot'>Ozelot</option><option value='VillagerGolem'>VillagerGolem</option><option value='EntityHorse'>EntityHorse</option><option value='Villager'>Villager</option>    </select>
-    <b>Custom Name:</b><input type="text" id="customName" value="">
-    <b class="extra lvl">Type:</b>
-    <select class="extra" id="extra">
-      <option value=""></option>
-    </select>
-</p>
-<p id="creepextra" style="display:none;">
-  <b>Blast Radius:</b><input id="XpRad" type="text" maxlength="2" value="3"/>
-    <b style="margin-left:108px">Fuse Time:</b><input id="fuse" type="text" maxlength="3" value="30"/> 
-    <b class="lvl" style="margin-left:108px">Ignited:</b>
-    <select id="ignited" class="extra2">
-      <option value="">No</option>
-        <option value=",ignited:1">Yes</option>
-    </select> 
-</p>
-<div id="DisableForNA">
-<p>
-    <b>Weapon:</b>
-    <select id="weapon" onChange="GetEnch('#weapon','#Wench');">
-    <option value="">None</option>
-        <option value='261'>Bow</option><option value='279'>Diamond Axe</option><option value='276'>Diamond Sword</option><option value='286'>Golden Axe</option><option value='283'>Golden Sword</option><option value='258'>Iron Axe</option><option value='267'>Iron Sword</option><option value='275'>Stone Axe</option><option value='272'>Stone Sword</option><option value='271'>Wooden Axe</option><option value='268'>Wooden Sword</option>    </select>
-    <b>Enchantment:</b>
-    <select id="Wench" name="Wench" onChange="GetLvl('#Wench','#WenchLvl');">
-        <option value="">None</option>
-    </select>
-  <b class="lvl">Level:</b>
-    <select class="lvl" id="WenchLvl" name="WenchLvl">
-      <option value=""></option>
-    </select>
-    <b>Drop Chance:</b>
-  <select class="drop" id="drop1">
-      <option value=""></option>
-        <option value="0.1F">10%</option>
-        <option value="0.2F">20%</option>
-        <option value="0.3F">30%</option>
-        <option value="0.4F">40%</option>
-        <option value="0.5F">50%</option>
-        <option value="0.6F">60%</option>
-        <option value="0.7F">70%</option>
-        <option value="0.8F">80%</option>
-        <option value="0.9F">90%</option>
-        <option value="1.0F">100%</option>        
-    </select>    
-</p>
-<p>
-    <b>Head:</b>
-    <select id="Harmour" name="Harmour" onChange="GetEnch('#Harmour','#A1ench');">
-    <option value="">None</option>
-        <option value='302'>Chain Helmet</option><option value='397'>Custom Head</option><option value='310'>Diamond Helmet</option><option value='314'>Golden Helmet</option><option value='306'>Iron Helmet</option><option value='298'>Leather Cap</option>    </select>
-    <b id="enchLabel">Enchantment:</b>
-    <select id="A1ench" name="A1ench" onChange="GetLvl('#A1ench','#A1enchLvl');">
-        <option value="">None</option>
-    </select>
-  <b class="lvl">Level:</b>
-    <select class="lvl" id="A1enchLvl" name="A1enchLvl">
-      <option value=""></option>
-    </select>
-    <b>Drop Chance:</b>
-  <select class="drop" id="drop5">
-      <option value=""></option>
-        <option value="0.1F">10%</option>
-        <option value="0.2F">20%</option>
-        <option value="0.3F">30%</option>
-        <option value="0.4F">40%</option>
-        <option value="0.5F">50%</option>
-        <option value="0.6F">60%</option>
-        <option value="0.7F">70%</option>
-        <option value="0.8F">80%</option>
-        <option value="0.9F">90%</option>
-        <option value="1.0F">100%</option>        
-    </select>     
-</p>
-<p>
-    <b>Body Armour:</b>
-    <select id="Barmour" name="Barmour" onChange="GetEnch('#Barmour','#A2ench');">
-    <option value="">None</option>
-        <option value='303'>Chain Chestplate</option><option value='311'>Diamond Chestplate</option><option value='315'>Golden Chestplate</option><option value='307'>Iron Chestplate</option><option value='299'>Leather Chestplate</option>    </select>
-    <b>Enchantment:</b>
-    <select id="A2ench" name="A2ench" onChange="GetLvl('#A2ench','#A2enchLvl');">
-        <option value="">None</option>
-    </select>
-  <b class="lvl">Level:</b>
-    <select class="lvl" id="A2enchLvl" name="A2enchLvl">
-      <option value=""></option>
-    </select>    
-    <b>Drop Chance:</b>
-  <select class="drop" id="drop4">
-      <option value=""></option>
-        <option value="0.1F">10%</option>
-        <option value="0.2F">20%</option>
-        <option value="0.3F">30%</option>
-        <option value="0.4F">40%</option>
-        <option value="0.5F">50%</option>
-        <option value="0.6F">60%</option>
-        <option value="0.7F">70%</option>
-        <option value="0.8F">80%</option>
-        <option value="0.9F">90%</option>
-        <option value="1.0F">100%</option>        
-    </select>     
-</p>
-<p>
-    <b>Leg Armour:</b>
-    <select id="Larmour" name="Larmour" onChange="GetEnch('#Larmour','#A3ench');">
-    <option value="">None</option>
-        <option value='304'>Chain Leggings</option><option value='312'>Diamond Leggings</option><option value='316'>Golden Leggings</option><option value='308'>Iron Leggings</option><option value='300'>Leather Leggings</option>    </select>
-    <b>Enchantment:</b>
-    <select id="A3ench" name="A3ench" onChange="GetLvl('#A3ench','#A3enchLvl');">
-        <option value="">None</option>
-    </select>
-  <b class="lvl">Level:</b>
-    <select class="lvl" id="A3enchLvl" name="A3enchLvl">
-      <option value=""></option>
-    </select>
-    <b>Drop Chance:</b>
-  <select class="drop" id="drop3">
-      <option value=""></option>
-        <option value="0.1F">10%</option>
-        <option value="0.2F">20%</option>
-        <option value="0.3F">30%</option>
-        <option value="0.4F">40%</option>
-        <option value="0.5F">50%</option>
-        <option value="0.6F">60%</option>
-        <option value="0.7F">70%</option>
-        <option value="0.8F">80%</option>
-        <option value="0.9F">90%</option>
-        <option value="1.0F">100%</option>        
-    </select>          
-</p>
-<p>
-    <b>Boot Armour:</b>
-    <select id="Farmour" name="Farmour" onChange="GetEnch('#Farmour','#A4ench');">
-    <option value="">None</option>
-        <option value='305'>Chain Boots</option><option value='313'>Diamond Boots</option><option value='317'>Golden Boots</option><option value='309'>Iron Boots</option><option value='301'>Leather Boots</option>    </select>
-    <b>Enchantment:</b>
-    <select id="A4ench" name="A4ench" onChange="GetLvl('#A4ench','#A4enchLvl');">
-        <option value="">None</option>
-    </select>
-  <b class="lvl">Level:</b>
-    <select class="lvl" id="A4enchLvl" name="A4enchLvl">
-      <option value=""></option>
-    </select>    
-    <b>Drop Chance:</b>
-  <select class="drop" id="drop2">
-      <option value=""></option>
-        <option value="0.1F">10%</option>
-        <option value="0.2F">20%</option>
-        <option value="0.3F">30%</option>
-        <option value="0.4F">40%</option>
-        <option value="0.5F">50%</option>
-        <option value="0.6F">60%</option>
-        <option value="0.7F">70%</option>
-        <option value="0.8F">80%</option>
-        <option value="0.9F">90%</option>
-        <option value="1.0F">100%</option>        
-    </select>      
-</p>
-<div id="extraStats">
-  <p>
-    <b>Health:</b><input id="health" type="text" maxlength="3" />
-    <b>Speed:</b>
-  <select id="speed" class="ignore">
-      <option value=""></option>
-      <option value="0.1">0.1</option>
-        <option value="0.2">0.2</option>
-        <option value="0.3">0.3</option>
-        <option value="0.4">0.4</option>
-        <option value="0.5">0.5</option>
-        <option value="0.6">0.6</option>
-        <option value="0.7">0.7</option>
-        <option value="0.8">0.8</option>
-        <option value="0.9">0.9</option>
-        <option value="1.0">1.0</option>
-  </select>
-    <b>Attack Damage:</b><input id="attackDmg" type="text" maxlength="3"/>
-    <b>Follow Range:</b><input id="followRange" type="text" maxlength="3"/>
-  <b>Knockback Resistance:</b><input id="knockback" type="text" maxlength="3"/> 
-    </p>
-</div>
-</div>
-</form>
-<div id="gen" onClick="Generate();">Generate</div>
-<div id="reset" onClick="Reset();">Reset</div>
-<p id="youCanEdit">You can edit this text before you copy and paste...</p>
-<textarea id="codeResultBox" spellcheck='false'></textarea>
-</div>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <div class="pages">
+    <div class="page p0">
+      <li class="placeholder"></li>
+      <span style="color:red;">Y</span>
+      <span style="color:orange;">S</span>
+      <span style="color:yellow;">I</span>
+      <span style="color:green;">T</span>
+      <span style="color:blue;">D</span>
+    </div>
+    <div class="page p1">
+      <li class="placeholder"></li>
+      <a href="/users">USERS</a></div>
+    <div class="page p2">
+      <li class="placeholder"></li>
+      <a href="commandGenerator.html">command generator</a>
+    </div>
+  </div>
 
 </body>
 </html>
