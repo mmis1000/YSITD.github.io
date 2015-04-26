@@ -18,27 +18,43 @@
   <!-- end of SEO area -->
   
 <style>
+
+/*
+YUI 3.18.1 (build f7e7bcb)
+Copyright 2014 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+http://yuilibrary.com/license/
+*/
+
+.yui3-cssreset html{color:#000;background:#FFF}.yui3-cssreset body,.yui3-cssreset div,.yui3-cssreset dl,.yui3-cssreset dt,.yui3-cssreset dd,.yui3-cssreset ul,.yui3-cssreset ol,.yui3-cssreset li,.yui3-cssreset h1,.yui3-cssreset h2,.yui3-cssreset h3,.yui3-cssreset h4,.yui3-cssreset h5,.yui3-cssreset h6,.yui3-cssreset pre,.yui3-cssreset code,.yui3-cssreset form,.yui3-cssreset fieldset,.yui3-cssreset legend,.yui3-cssreset input,.yui3-cssreset textarea,.yui3-cssreset p,.yui3-cssreset blockquote,.yui3-cssreset th,.yui3-cssreset td{margin:0;padding:0}.yui3-cssreset table{border-collapse:collapse;border-spacing:0}.yui3-cssreset fieldset,.yui3-cssreset img{border:0}.yui3-cssreset address,.yui3-cssreset caption,.yui3-cssreset cite,.yui3-cssreset code,.yui3-cssreset dfn,.yui3-cssreset em,.yui3-cssreset strong,.yui3-cssreset th,.yui3-cssreset var{font-style:normal;font-weight:normal}.yui3-cssreset ol,.yui3-cssreset ul{list-style:none}.yui3-cssreset caption,.yui3-cssreset th{text-align:left}.yui3-cssreset h1,.yui3-cssreset h2,.yui3-cssreset h3,.yui3-cssreset h4,.yui3-cssreset h5,.yui3-cssreset h6{font-size:100%;font-weight:normal}.yui3-cssreset q:before,.yui3-cssreset q:after{content:''}.yui3-cssreset abbr,.yui3-cssreset acronym{border:0;font-variant:normal}.yui3-cssreset sup{vertical-align:text-top}.yui3-cssreset sub{vertical-align:text-bottom}.yui3-cssreset input,.yui3-cssreset textarea,.yui3-cssreset select{font-family:inherit;font-size:inherit;font-weight:inherit}.yui3-cssreset input,.yui3-cssreset textarea,.yui3-cssreset select{*font-size:100%}.yui3-cssreset legend{color:#000}#yui3-css-stamp.cssreset-context{display:none}
+
 body {
   font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
   counter-reset: section;                   /* Set the section counter to 0 */
 }
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color : #ffffff;
+}
+
+
 .page:after {
   counter-increment: section;               
-  content: "Page" counter(section);
+  content: "P." counter(section) " scroll down ︾";
   position:absolute;
   right:5px;
   bottom:5px;
-  font-size:18px;
-  line-height:18px;
+  font-size:40px;
+  line-height:40px;
   text-align:center;
   vertical-align:baseline;
   color:#777777;
+  text-shadow: none;
 }
 
-* {
-  border:0px;
-  margin:0px;
-  padding:0px;
+.page:last-child:after {
+  content: "P." counter(section) " last page";
 }
 
 html, body {
@@ -47,8 +63,41 @@ html, body {
 }
 
 body {
-  overflow:auto;
+  overflow:hidden;
   position:relative;
+}
+
+.background {
+  position:fixed;
+  left:-10px;
+  right:-10px;
+  bottom:-10px;
+  top:-10px;
+  
+  
+  filter: blur(2px) brightness(0.4); 
+  -webkit-filter: blur(2px) brightness(0.4);
+  -moz-filter: blur(2px) brightness(0.4);
+  -o-filter: blur(2px) brightness(0.4); 
+  -ms-filter: blur(2px) brightness(0.4);
+  
+  overflow:hidden;
+}
+
+.background div {
+
+  position:absolute;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  top:0px;
+  
+  background-image : url("background.png");
+  background-repeat : no-repeat;
+  background-position : center center;
+  background-size: 100% 100%;
+  background-size: cover;
+  
 }
 
 .pages {
@@ -66,9 +115,12 @@ body {
   position:relative;
   width:100%;
   height:100%;
-  background:#ffffff;
-  border-bottom:1px solid #777777;
+  background: transparent;
+  /*border-bottom:1px solid #777777;*/
   overflow:hidden;
+  
+  
+  text-shadow: 4px 4px 4px #000000;
 }
 .page .placeholder{
   display:inline-block;
@@ -96,6 +148,11 @@ body {
   overflow : hidden;
   
   position : relative;
+  
+  
+  -webkit-box-shadow:  4px 40x 4px 0px rgba(0,0,0,1);
+  -moz-box-shadow:  4px 4px 4px 0px rgba(0,0,0,1);
+  box-shadow:  4px 4px 4px 0px rgba(0,0,0,1);
 }
 
 .p0 .img-overlay {
@@ -114,6 +171,16 @@ body {
   height : 200px;
 }
 
+.p1 {
+  
+  background-image : url("user-bg.jpg");
+  background-attachment : fixed;
+  background-repeat : no-repeat;
+  background-position : center center;
+  background-size: 100% 100%;
+  background-size: cover;
+}
+
 .p1,.p1 a{
   font-size:200px;
   text-align:center;
@@ -122,6 +189,11 @@ body {
   white-space: nowrap;
 }
 
+.p1:after {
+  color:#ffffff;
+  text-shadow: none;
+  text-shadow: 4px 4px 4px #000000;
+}
 
 .p2,.p2 a{
   font-size:20px;
@@ -147,6 +219,12 @@ body {
     text-align:center;
     vertical-align:middle;
     line-height:0px;
+  }
+  
+  
+  .page:after {
+    font-size:30px;
+    line-height:30px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -181,6 +259,12 @@ body {
     vertical-align:middle;
     line-height:0px;
   }
+  
+  .page:after {
+    font-size:18px;
+    line-height:18px;
+  }
+  
 }
 @media screen and (max-width: 320px) {
   .p0,.p0 span{
@@ -224,6 +308,9 @@ body {
 </style>
 </head>
 <body>
+  <div class="background">
+    <div></div>
+  </div>
   <div class="pages">
     <div class="page p0">
       <li class="placeholder"></li>
