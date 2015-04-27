@@ -1,0 +1,408 @@
+
+
+/*
+YUI 3.18.1 (build f7e7bcb)
+Copyright 2014 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+http://yuilibrary.com/license/
+*/
+
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
+
+body {
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color : #ffffff;
+}
+
+a:before {
+  font-family: FontAwesome;
+  content: "\f0c1";
+  font-size : 0.8em;
+  vertical-align:middle;
+  display: inline-block;
+  padding-right: 3px;
+}
+
+
+a.no-icon:before {
+  display: none;
+  content: "";
+}
+
+p {
+  padding : 0.2em;
+}
+
+
+html, body {
+  width:100%;
+  height:100%;
+}
+
+body {
+  overflow:auto;
+  position:relative;
+}
+
+.background {
+  position:fixed;
+  left:-10px;
+  right:-10px;
+  bottom:-10px;
+  top:-10px;
+  
+  /*
+  filter: blur(2px) brightness(0.4); 
+  -webkit-filter: blur(2px) brightness(0.4);
+  -moz-filter: blur(2px) brightness(0.4);
+  -o-filter: blur(2px) brightness(0.4); 
+  -ms-filter: blur(2px) brightness(0.4);
+  */
+  
+  overflow:hidden;
+}
+
+.background div {
+
+  position:absolute;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  top:0px;
+  background : #161414;
+  background-image : url("../images/background-processed.png");
+  background-repeat : no-repeat;
+  background-position : center center;
+  background-size: 100% 100%;
+  background-size: cover;
+  
+}
+
+.pages {
+  position:fixed;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  top:0px;
+  overflow:auto;
+}
+
+.page {
+  box-sizing: border-box;
+  float:left;
+  position:relative;
+  width:100%;
+  height:100%;
+  background: transparent;
+  /*border-bottom:1px solid #777777;*/
+  overflow:hidden;
+  
+  
+  text-shadow: 4px 4px 4px #000000;
+}
+
+
+.page:before {
+  font-family: FontAwesome;
+  content: "\f103";
+  display:block;
+  position:absolute;
+  left:50%;
+  bottom:5px;
+  font-size:80px;
+  line-height:80px;
+  
+  width: 80px;
+  margin-left: -40px;
+  
+  text-align:center;
+  vertical-align:baseline;
+  color:#777777;
+  text-shadow: none;
+  
+  z-index: 9999;
+}
+
+.page:last-child:before {
+  content: "\f106";
+}
+
+.page.no-page-icon:before {
+  display : none;
+}
+
+.page .placeholder{
+  display:inline-block;
+  width:0px;
+  height:100%;
+  vertical-align:middle;
+  line-height:0px;
+}
+
+
+.text-page {
+  box-sizing: border-box;
+  float:left;
+  position:relative;
+  width:100%;
+  height:auto;
+  background: #dddddd;
+  background-image: url(../images/noise-background.png);
+  overflow:hidden;
+  color : #333333;
+  font-size : 20px;
+  padding : 40px;
+  
+  padding-bottom : 100px;
+  
+  text-align : center;
+  text-shadow: 4px 4px 8px #aaaaaa;
+}
+
+.text-page:before {
+  color : #eeeeee;
+  text-shadow: 0px 0px 2px #aaaaaa;
+}
+
+.text-page.no-page-icon {
+  padding-bottom : 40px;
+}
+
+
+.text-page a, .text-page a:link, .text-page a:visited, .text-page a:hover, .text-page a:active {
+  color : #333366;
+}
+
+
+.p0,.p0 span{
+  font-size:200px;
+  text-align:center;
+  vertical-align:middle;
+  line-height:0px;
+  white-space: nowrap;
+}
+
+.p0 .img-wrap{
+  background : #aaaaaa;
+  
+  border : 4px solid #777777;
+  border-right : 4px solid #aaaaaa;
+  border-bottom : 4px solid #aaaaaa;
+  border-radius : 44px;
+  display : inline-block;
+  vertical-align:middle;
+  overflow : hidden;
+  
+  position : relative;
+  
+  
+  -webkit-box-shadow:  4px 40x 4px 0px rgba(0,0,0,1);
+  -moz-box-shadow:  4px 4px 4px 0px rgba(0,0,0,1);
+  box-shadow:  4px 4px 4px 0px rgba(0,0,0,1);
+}
+
+.p0 .img-wrap-inner {
+  width : 100%;
+  height : 100%;
+  overflow : hidden;
+  border-radius: 40px;
+}
+
+.p0 .img-overlay {
+  border-radius: 40px;
+  position : absolute;
+  top : 0px;
+  left : 0px;
+  right : 0px;
+  bottom : 0px;
+  -webkit-box-shadow: inset 40px 40px 40px 0px rgba(255,255,255,0.8);
+  -moz-box-shadow: inset 40px 40px 40px 0px rgba(255,255,255,0.8);
+  box-shadow: inset 40px 40px 40px 00px rgba(255,255,255,0.8);
+}
+
+.p0 img {
+  height : 200px;
+}
+
+.p1 .user-bg{
+  position : absolute;
+  left : 0px;
+  top : 0px;
+  width : 100%;
+  height  : 100%;
+  clip: rect(auto, auto, auto, auto);
+  z-index : 1;
+}
+
+.p1 .user-bg-inner {
+  position : fixed;
+  left : 0px;
+  top : 0px;
+  width : 100%;
+  height  : 100%;
+  background-image : url("../images/user-bg.jpg");
+  background-attachment : scroll;
+  background-repeat : no-repeat;
+  background-position : center center;
+  
+  background-size: 100% 100%;
+  
+  z-index: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* mobile chrome render problem */
+.disable-fixed .p1 .user-bg-inner {
+  position : absolute;
+}
+
+.p1-inner {
+  position : absolute;
+  left : 0px;
+  top : 0px;
+  height : 100%;
+  width : 100%;
+  z-index : 2;
+}
+
+.p1,.p1 a{
+  font-size:200px;
+  text-align:center;
+  vertical-align:middle;
+  line-height:0px;
+  white-space: nowrap;
+}
+
+.p1:after {
+  color:#ffffff;
+  text-shadow: none;
+  text-shadow: 4px 4px 4px #000000;
+}
+
+.p2,.p2 a{
+  font-size:20px;
+  text-align:center;
+  vertical-align:middle;
+  line-height:0px;
+}
+
+.trigger-layout {
+  height : 1px;
+  width : 1px;
+  display : inline-block;
+  overflow : hidden;
+}
+
+@media screen and (max-width: 1000px) {
+  .p0,.p0 span{
+    font-size:140px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+  .p0 img {
+    vertical-align:middle;
+    height : 140px;
+  }
+
+  .p1,.p1 a{
+    font-size:140px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+  
+  
+  .page:after {
+  }
+}
+@media screen and (max-width: 600px) {
+  .p0,.p0 span{
+    font-size:70px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+  
+  .p0 .img-wrap{
+    border : 2px solid #777777;
+    border-right : 2px solid #aaaaaa;
+    border-bottom : 2px solid #aaaaaa;
+    border-radius : 22px;
+  }
+  .p0 .img-wrap-inner {
+    border-radius : 20px;
+  }
+  
+  .p0 img {
+    vertical-align:middle;
+    height : 70px;
+  }
+
+  .p0 .img-overlay {
+    -webkit-box-shadow: inset 20px 20px 20px 0px rgba(255,255,255,0.8);
+    -moz-box-shadow: inset 20px 20px 20px 0px rgba(255,255,255,0.8);
+    box-shadow: inset 20px 20px 20px 00px rgba(255,255,255,0.8);
+  border-radius: 20px;
+  }
+
+  .p1,.p1 a{
+    font-size:70px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+  
+  .page:after {
+  }
+  
+}
+@media screen and (max-width: 320px) {
+  .p0,.p0 span{
+    font-size:40px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+  
+  .p0 .img-wrap{
+    border-radius : 17px;
+  }
+  .p0 .img-wrap-inner {
+    border-radius : 15px;
+  }
+  
+  .p0 img {
+    vertical-align:middle;
+    height : 40px;
+  }
+  
+  .p0 .img-overlay {
+    -webkit-box-shadow: inset 15px 15px 15px 0px rgba(255,255,255,0.8);
+    -moz-box-shadow: inset 15px 15px 15px 0px rgba(255,255,255,0.8);
+    box-shadow: inset 15px 15px 15px 00px rgba(255,255,255,0.8);
+  border-radius: 15px;
+  }
+
+  .p1,.p1 a{
+    font-size:40px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:0px;
+  }
+}
+
+
+.p0 {
+  font-size:0px;
+}
+
+.p1 {
+  font-size:0px;
+}

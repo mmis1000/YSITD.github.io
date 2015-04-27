@@ -9,6 +9,10 @@
   <link rel="shortcut icon" href="http:///ysitd.github.io/favicon.ico" type="image/vnd.microsoft.icon">
   <link rel="icon" href="http://ysitd.github.io/favicon.ico" type="image/vnd.microsoft.icon">
   
+  
+  <link rel="stylesheet" href="css/font-awesome-4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  
   <!-- start of SEO area -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta property="og:title" content="YSITD | Young Students' IT Discussion" />
@@ -17,336 +21,14 @@
   <meta property="og:image" content="http://ysitd.github.io/ysitd.jpg" />
   <!-- end of SEO area -->
   
-<style>
-
-/*
-YUI 3.18.1 (build f7e7bcb)
-Copyright 2014 Yahoo! Inc. All rights reserved.
-Licensed under the BSD License.
-http://yuilibrary.com/license/
-*/
-
-html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
-
-body {
-  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  counter-reset: section;                   /* Set the section counter to 0 */
-}
-
-a, a:link, a:visited, a:hover, a:active {
-  text-decoration: none;
-  color : #ffffff;
-}
-
-
-.page:after {
-  counter-increment: section;               
-  content: "P." counter(section) " scroll down ︾";
-  position:absolute;
-  right:5px;
-  bottom:5px;
-  font-size:40px;
-  line-height:40px;
-  text-align:center;
-  vertical-align:baseline;
-  color:#777777;
-  text-shadow: none;
-}
-
-.page:last-child:after {
-  content: "P." counter(section) " last page";
-}
-
-html, body {
-  width:100%;
-  height:100%;
-}
-
-body {
-  overflow:auto;
-  position:relative;
-}
-
-.background {
-  position:fixed;
-  left:-10px;
-  right:-10px;
-  bottom:-10px;
-  top:-10px;
-  
-  /*
-  filter: blur(2px) brightness(0.4); 
-  -webkit-filter: blur(2px) brightness(0.4);
-  -moz-filter: blur(2px) brightness(0.4);
-  -o-filter: blur(2px) brightness(0.4); 
-  -ms-filter: blur(2px) brightness(0.4);
-  */
-  
-  overflow:hidden;
-}
-
-.background div {
-
-  position:absolute;
-  left:0px;
-  right:0px;
-  bottom:0px;
-  top:0px;
-  
-  background-image : url("background-processed.png");
-  background-repeat : no-repeat;
-  background-position : center center;
-  background-size: 100% 100%;
-  background-size: cover;
-  
-}
-
-.pages {
-  position:fixed;
-  left:0px;
-  right:0px;
-  bottom:0px;
-  top:0px;
-  overflow:auto;
-}
-
-.page {
-  box-sizing: border-box;
-  float:left;
-  position:relative;
-  width:100%;
-  height:100%;
-  background: transparent;
-  /*border-bottom:1px solid #777777;*/
-  overflow:hidden;
-  
-  
-  text-shadow: 4px 4px 4px #000000;
-}
-.page .placeholder{
-  display:inline-block;
-  width:0px;
-  height:100%;
-  vertical-align:middle;
-  line-height:0px;
-}
-
-.p0,.p0 span{
-  font-size:200px;
-  text-align:center;
-  vertical-align:middle;
-  line-height:0px;
-  white-space: nowrap;
-}
-
-.p0 .img-wrap{
-  background : #aaaaaa;
-  
-  border : 4px solid #777777;
-  border-right : 4px solid #aaaaaa;
-  border-bottom : 4px solid #aaaaaa;
-  border-radius : 44px;
-  display : inline-block;
-  vertical-align:middle;
-  overflow : hidden;
-  
-  position : relative;
-  
-  
-  -webkit-box-shadow:  4px 40x 4px 0px rgba(0,0,0,1);
-  -moz-box-shadow:  4px 4px 4px 0px rgba(0,0,0,1);
-  box-shadow:  4px 4px 4px 0px rgba(0,0,0,1);
-}
-
-.p0 .img-wrap-inner {
-  width : 100%;
-  height : 100%;
-  overflow : hidden;
-  border-radius: 40px;
-}
-
-.p0 .img-overlay {
-  border-radius: 40px;
-  position : absolute;
-  top : 0px;
-  left : 0px;
-  right : 0px;
-  bottom : 0px;
-  -webkit-box-shadow: inset 40px 40px 40px 0px rgba(255,255,255,0.8);
-  -moz-box-shadow: inset 40px 40px 40px 0px rgba(255,255,255,0.8);
-  box-shadow: inset 40px 40px 40px 00px rgba(255,255,255,0.8);
-}
-
-.p0 img {
-  height : 200px;
-}
-
-.p1 .user-bg{
-  position : absolute;
-  left : 0px;
-  top : 0px;
-  width : 100%;
-  height  : 100%;
-  clip: rect(auto, auto, auto, auto);
-  z-index : 1;
-}
-
-.p1 .user-bg-inner {
-  position : fixed;
-  left : 0px;
-  top : 0px;
-  width : 100%;
-  height  : 100%;
-  background-image : url("user-bg.jpg");
-  background-attachment : scroll;
-  background-repeat : no-repeat;
-  background-position : center center;
-  background-size: 100% 100%;
-  background-size: cover;
-}
-
-.p1-inner {
-  position : absolute;
-  left : 0px;
-  top : 0px;
-  height : 100%;
-  width : 100%;
-  z-index : 2;
-}
-
-.p1,.p1 a{
-  font-size:200px;
-  text-align:center;
-  vertical-align:middle;
-  line-height:0px;
-  white-space: nowrap;
-}
-
-.p1:after {
-  color:#ffffff;
-  text-shadow: none;
-  text-shadow: 4px 4px 4px #000000;
-}
-
-.p2,.p2 a{
-  font-size:20px;
-  text-align:center;
-  vertical-align:middle;
-  line-height:0px;
-}
-
-@media screen and (max-width: 1000px) {
-  .p0,.p0 span{
-    font-size:140px;
-    text-align:center;
-    vertical-align:middle;
-    line-height:0px;
-  }
-  .p0 img {
-    vertical-align:middle;
-    height : 140px;
-  }
-
-  .p1,.p1 a{
-    font-size:140px;
-    text-align:center;
-    vertical-align:middle;
-    line-height:0px;
-  }
-  
-  
-  .page:after {
-    font-size:30px;
-    line-height:30px;
-  }
-}
-@media screen and (max-width: 600px) {
-  .p0,.p0 span{
-    font-size:70px;
-    text-align:center;
-    vertical-align:middle;
-    line-height:0px;
-  }
-  
-  .p0 .img-wrap{
-    border : 2px solid #777777;
-    border-right : 2px solid #aaaaaa;
-    border-bottom : 2px solid #aaaaaa;
-    border-radius : 22px;
-  }
-  .p0 .img-wrap-inner {
-    border-radius : 20px;
-  }
-  
-  .p0 img {
-    vertical-align:middle;
-    height : 70px;
-  }
-
-  .p0 .img-overlay {
-    -webkit-box-shadow: inset 20px 20px 20px 0px rgba(255,255,255,0.8);
-    -moz-box-shadow: inset 20px 20px 20px 0px rgba(255,255,255,0.8);
-    box-shadow: inset 20px 20px 20px 00px rgba(255,255,255,0.8);
-  border-radius: 20px;
-  }
-
-  .p1,.p1 a{
-    font-size:70px;
-    text-align:center;
-    vertical-align:middle;
-    line-height:0px;
-  }
-  
-  .page:after {
-    font-size:18px;
-    line-height:18px;
-  }
-  
-}
-@media screen and (max-width: 320px) {
-  .p0,.p0 span{
-    font-size:40px;
-    text-align:center;
-    vertical-align:middle;
-    line-height:0px;
-  }
-  
-  .p0 .img-wrap{
-    border-radius : 17px;
-  }
-  .p0 .img-wrap-inner {
-    border-radius : 15px;
-  }
-  
-  .p0 img {
-    vertical-align:middle;
-    height : 40px;
-  }
-  
-  .p0 .img-overlay {
-    -webkit-box-shadow: inset 15px 15px 15px 0px rgba(255,255,255,0.8);
-    -moz-box-shadow: inset 15px 15px 15px 0px rgba(255,255,255,0.8);
-    box-shadow: inset 15px 15px 15px 00px rgba(255,255,255,0.8);
-  border-radius: 15px;
-  }
-
-  .p1,.p1 a{
-    font-size:40px;
-    text-align:center;
-    vertical-align:middle;
-    line-height:0px;
-  }
-}
-
-
-.p0 {
-  font-size:0px;
-}
-
-.p1 {
-  font-size:0px;
-}
-</style>
+  <script>
+    var root = document.documentElement;
+    //alert(navigator.userAgent);
+    if (navigator.userAgent.match(/android/i) && 
+       navigator.userAgent.match(/chrome/i)) {
+      root.setAttribute("class", "disable-fixed");
+    }
+  </script>
 </head>
 <body>
   <div class="background">
@@ -357,7 +39,7 @@ body {
       <li class="placeholder"></li>
       <div class="img-wrap">
         <div class="img-wrap-inner">
-          <img src="ysitd.jpg">
+          <img src="images/ysitd.jpg">
         </div>
         <div class="img-overlay"></div>
       </div>
@@ -367,14 +49,42 @@ body {
       <span style="color:green;">T</span>
       <span style="color:blue;">D</span>
     </div>
+    <div class="page text-page">
+      <p>About Us :</p>
+      <p>
+        "YSITD" which means Young Students' IT Discussion, is a group composed by young taiwanese students.
+        We discuss about Electronics, Computer science, Philosophy, Open source and many others we interested.
+      </p>
+      <p>
+        There isn't really a limit on what we should discuss.
+        We just discuss any we likes.
+      </p>
+      <p>
+        We also welcome any other to join us.
+      </p>
+      <p>
+        IRC : 
+        <a class="no-icon" href="irc://irc.freenode.net:6697/#ysitd">
+          irc://irc.freenode.net:6697/#ysitd
+        </a>
+      </p>
+      <p>
+        <a href="http://webchat.freenode.net?channels=%23ysitd">Web chat</a>
+      </p>
+    </div>
     <div class="page p1">
       <div class="user-bg">
         <div class="user-bg-inner"></div>
       </div>
       <div class="p1-inner">
         <li class="placeholder"></li>
-        <a href="/users">USERS</a></div>
+        <a href="/users">USERS</a>
+        <span class="trigger-layout"></span>
       </div>
+    </div>
+    <div class="page text-page no-page-icon">
+      Other stuffs
+    </div>
     <div class="page p2">
       <li class="placeholder"></li>
       <a href="commandGenerator.html">command generator</a>
